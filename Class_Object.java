@@ -37,7 +37,8 @@ public class Class_Object {
         e1.output();
 
         Employee[] emp={
-                new Employee(1, "het", 24500),
+                new Employee(1, 
+                "het", 24500),
                 new Employee(2, "sahil", 20500),
                 new Employee(
                     3, "dev", 19500),

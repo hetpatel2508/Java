@@ -19,7 +19,8 @@ class school {
 
 };
 
-public class pr12_1 {
+public class pr12_1
+ {
 
     static String hello = "Hello World";
 

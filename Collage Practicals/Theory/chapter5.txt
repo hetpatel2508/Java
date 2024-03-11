@@ -1,0 +1,72 @@
+(1.) what is exception ? explain try, catch, and finally with ex
+
+    - An exception in Java is an event that occurs during the execution of a program, disrupting the normal flow of the program's instructions
+    - Exceptions can occur for various reasons, such as incorrect input, invalid operations, or unexpected conditions, etc...
+    - They can be handled using Java's exception handling mechanism.
+    - Types Of Exceptions:
+        1. User-Defined
+        2. Built-in Exception
+    - Built-in Exception type:
+        1. checked exception
+        2. unchecked exception
+    -checked exception =
+            ClassNotFoundException,
+            InterruptedException,
+            IOException,
+            InstantiationException,
+            SQLException,
+            FileNotFoundException,
+    -unchecked exception = 
+            ArithmaticException,
+            ClassCastException,
+            NullPointerException,
+            ArrayINdexOutOfBoundsException,
+            ArrayStoreException,
+            IllegalThreadStateException,
+    
+
+    =>try,catch and finally :-
+
+        -> try: 
+            - The try block in Java is used to enclose a block of code where exceptions may occur.
+            - It is followed by one or more catch blocks and an optional finally block.
+            - The purpose of the try block is to identify and handle exceptions
+            - If an exception occurs within the try block, the control is transferred to the appropriate catch block or the finally block (if present).
+        
+        -> catch:
+            - The catch block in Java is used to handle exceptions that are thrown by the try block.
+            - It handle the Exception by declaring the type of exception within the parameter.
+            - The catch block must be used after the try block only. 
+            - You can use multiple catch block with a single try block.
+
+        -> finally:
+            - The finally block in Java is used to execute code that needs to run regardless of whether an exception occurs within the corresponding try block or not.
+            - It provides a way to ensure that certain cleanup or finalization tasks are performed
+
+
+        ->ex: 
+            public class Example {
+                
+                // Method to perform division
+                private static int divide(int dividend, int divisor) {
+                    if (divisor == 0) {
+                        throw new ArithmeticException("Cannot divide by zero.");
+                    }
+                    return dividend / divisor;
+                }
+
+
+                public static void main(String[] args) {
+                    try {
+                        int result = divide(10, 0);
+                        System.out.println("Result: " + result);
+                    } catch (ArithmeticException e) {
+                        System.out.println("Error: " + e.getMessage());
+                    } finally {
+                        System.out.println("Finally block executed.");
+                    }
+                }                
+            }
+                   
+                    // catch (anyName e) 
+                    //throw new anyName("Cannot divide by zero.");

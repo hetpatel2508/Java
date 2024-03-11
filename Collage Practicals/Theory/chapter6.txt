@@ -1,0 +1,64 @@
+(1.) what is thread ? describe the complete life cycle of thread
+
+    - A thread in Java represents a separate flow of execution within a program. 
+    - It allows concurrent execution of multiple tasks
+    - It enables programs to perform multiple operations simultaneously.
+    - A Thread is a very light-weighted process, or we can say the smallest part of the process that allows a program to operate more efficiently by running multiple tasks simultaneously.
+
+    => Life Cycle of a Thread : 
+        image link = https://media.geeksforgeeks.org/wp-content/uploads/20230620182419/Lifecycle-and-States-of-a-Thread-in-Java-768.png
+
+        - There are multiple states of the thread in a lifecycle as mentioned below:
+
+        1. New State : 
+            - When a new thread is created, it is in the new state.
+            - The thread has not yet started to run when the thread is in this state.
+            - It remains in this state until the program starts the thread.
+            - It is also referred to as a born thread.
+            - ex : Thread thread = new Thread();
+
+        2. Runnable State :
+            - A thread that is ready to run is moved to a runnable state
+            - A thread enters the runnable state after it is started using the start() method.
+            - It is ready to run but may be waiting for the CPU to execute its task.
+            - It is the responsibility of the thread scheduler to give the thread, time to run. , i.e., moving the thread to the running state.
+            - ex : thread.start();
+
+        3. Running State :
+            - When the CPU scheduler selects a thread from the runnable state, it enters the running state.
+            - In this state, the thread's code is actively executing on the CPU.
+            - A thread remains in the running state until it either voluntarily gives up control, encounters a blocking operation, or its time slice expires.
+        
+        4. Blocked State :
+            - he thread will be in blocked state when it is trying to acquire a lock but currently the lock is acquired by the other thread.
+            - While in this state, the thread cannot execute its code until the condition for which it is waiting is satisfied.
+            - Once the condition is met, the thread transitions back to the runnable state.
+            -ex:
+                InputStream in = new FileInputStream("file.txt");
+                in.read();
+                synchronized(obj) {
+                // Critical section
+                }
+
+        5. Waiting State :
+            - Threads enter the waiting state when they explicitly call methods like wait(), join(), or sleep().
+            - It will move to the runnable state when other thread will notify or that thread will be terminated.
+            
+        6. Timed Waiting State :
+            - Threads enter the timed waiting state when they call methods like sleep() or join() with a specified timeout.
+            - They stay in this state until the sleep duration finishes or the join operation completes, then they return to the runnable state.
+            - ex : Thread.sleep(1000); // Wait for 1 second
+
+            
+        7. Terminated State:
+            - Also known as dead state
+            - A thread enters the terminated state when its run() method completes execution or when an uncaught exception occurs.
+            - Once in this state, the thread cannot be started again.
+            - Resources associated with the thread, such as memory, are released here
+            - The life cycle of that thread will end here.
+            -ex : thread.join(); // Wait for thread to terminate
+
+
+(2.) Thread synchronization with ex
+
+    

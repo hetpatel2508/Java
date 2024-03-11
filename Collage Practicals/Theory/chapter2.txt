@@ -1,0 +1,450 @@
+(1.) constructor : rules , types , constructor overloading with example
+
+    -  In Java, a constructor is a block of codes similar to the method.
+    -  Constructors are special methods that are used to initialize objects.
+    -  It is called whenever an instance of that class is created.
+    -  Every time an object is created using the new() keyword, at least one constructor is called.
+    -  constructors do not have any return type
+    -  A class can have multiple constructors with different parameter lists.
+
+
+  => Rules :-
+
+    1.  The name of the constructors must be the same as the class name.
+    2.  Java constructors do not have a return type. not even 'void'
+    3.  There can be multiple constructors in the same class.
+    4.  Constructors can have parameters to initialize the object with specific values
+    5.  The access modifiers can be used with the constructors
+    6.  Java provides a default constructor that is invoked during the time of object creation. If you create any type of constructor, the default constructor provided by Java will not invoked.
+
+  => Types :-
+
+      There are three different types of constructors in Java, we have listed them as follows:
+
+        1. Default Constructor :-
+
+             -A constructor with no parameters is called Default Constructor.
+             -It initializes the object's members to default values provided in Constructor.
+
+             ex:- 
+                public class Box {
+                    double length;
+                    double width;
+                    double height;
+                
+                    // Default Constructor
+                    public Box() {
+                        length = 1;
+                        width = 1;
+                        height = 1;
+                    }
+                }
+
+
+        2. Parameterized Constructor :-
+
+             -A constructor with parameters is called Parameterized Constructor
+             -It allows initialization of the object with specified values provided in Constructor.
+             
+             ex:-
+                public class Box {
+                    double length;
+                    double width;
+                    double height;
+                
+                    // Parameterized Constructor
+                    public Box(double length, double width, double height) {
+                        this.length = length;
+                        this.width = width;
+                        this.height = height;
+                    }
+                }
+
+        3.  Copy Constructor :-
+
+            - A constructor that initializes an object by copying the data of another object of the same class is called Copy Constructor.
+            
+            ex:-
+                public class Student {
+                    private String name;
+                    private int age;
+
+                    // Copy constructor
+                    public Student(Student other) {
+                        this.name = other.name; 
+                        this.age = other.age;   
+                    }
+                }
+
+            Student student1 = new Student("Alice", 20);
+            Student student2 = new Student(student1);
+
+
+
+(2.) Constructor overloading
+
+    - Constructor overloading is a concept in OOP where a class can have multiple constructors with different parameter lists.
+    - This allows the class to be instantiated in different ways
+    - It provides flexibility in object creation and initialization.
+
+    =>ex :-
+      public class Rectangle {
+            private double length;
+            private double width;
+         //Constructor 1
+            public Rectangle() {
+                length = 1.0;
+                width = 1.0;
+            }
+         //Constructor 2
+            public Rectangle(double side) {
+                length = side;
+                width = side;
+            }
+         //Constructor 3
+            public Rectangle(double length, double width) {
+                this.length = length;
+                this.width = width;
+            }
+      }
+
+
+(3.) Explain all Visibility or Access modifiers with example 
+
+    - The access modifiers in Java are used to control the accessibility of the variables, data members, methods, classes, or constructors.
+    - There are four main access modifiers in Java:
+
+    1. public :-
+
+        - Public elements are accessible from anywhere within the same package or from any other package.  //packages are the programms of a same file.
+        - They are visible to all other classes and packages.
+        - There are no scenarios where public elements become inaccessible, as they are always accessible.
+
+        =>ex: 
+            //MyClass.java
+            public class MyClass {
+                public int publicVar = 10;
+            
+                public void publicMethod() {
+                    System.out.println("This is a public method.");
+                }
+            }
+
+
+            //AnotherClass.java
+            public class AnotherClass {
+                public static void main(String[] args) {
+                    MyClass obj = new MyClass();
+                    System.out.println(obj.publicVar);   // Accessing public variable
+                    obj.publicMethod();                   // Accessing public method
+                }
+            }
+
+    2. default :-
+
+        - Default elements are accessible only within the same package.
+        - They are not accessible from outside the package.
+        
+
+        => ex ; 
+
+            //MyClass.java
+                class MyClass {
+                    void defaultMethod() {
+                        System.out.println("This is a default method.");
+                    }
+                }
+
+            //AnotherClass.java
+                public class AnotherClass {
+                    public static void main(String[] args) {
+                        MyClass obj = new MyClass();
+                        obj.defaultMethod(); // This is a default method.
+                    }
+                }
+
+
+    3. Protected:-
+
+        - Variables, methods, and constructors, which are declared protected in a superclass can be accessed only by the subclasses in the current package or other package.
+        - They are not accessible by unrelated classes outside the package, except through inheritance.
+
+        => ex :-
+
+            //MyClass.java
+                public class MyClass {
+                    protected void protectedMethod() {
+                        System.out.println("This is a protected method.");
+                    }
+                }
+
+            //AnotherClass.java
+                public class AnotherClass {
+                    public static void main(String[] args) {
+                        MyClass obj = new MyClass();
+                        obj.protectedMethod(); // This is a protected method.
+                    }
+                }
+
+
+    4. private :-
+
+        - Private elements are accessible only within the same class.
+        - They are not accessible from outside the class, even by subclasses.
+
+        =>ex :-
+            //MyClass.java
+                public class MyClass {
+                    private void privateMethod() {
+                        System.out.println("This is a private method.");
+                    }
+                }
+
+            //AnotherClass.java
+                public class AnotherClass {
+                    public static void main(String[] args) {
+                        MyClass obj = new MyClass();
+                        // obj.privateMethod(); // Compilation error: privateMethod() has private access in MyClass
+                    }
+                }
+
+
+
+(4.) string vs StringBuffer with ex               
+    
+                string                                           StringBuffer 
+
+    1. The String class is immutable.  1.The StringBuffer class is mutable.
+    2. As for Performance, It is slow  2.As for Performance, It is fast
+    3. it can’t be modified            3.its object can be modified 
+    4. Methods are not synchronized    4.All methods are synchronized in this class. 
+       in this class. 
+    5. it uses String constant pool    5.it uses Heap memory
+    6. it consumes more memory         6.it consumes less memory
+    7. ex:-                            7. ex:- 
+        String str = "Hello";               StringBuffer result = new StringBuffer();
+        str += " World";                    result.append("Hello");
+        System.out.println(str);            result.append(" World");
+                                            System.out.println(result);
+
+
+
+(5.) explain method overloading & method overriding 
+
+    => Method Overloading :
+
+        - Method overloading allows a class to have multiple methods with the same name but different parameters.
+        - Method overloading is a compile-time polymorphism.
+        - In method overloading, methods must have the same name and different parameters.
+        - In method overloading, the return type can or can not be the same, but parameters must be different.
+        - Static binding is being used for overloaded methods.
+        - Poor Performance due to compile time polymorphism.
+        - Private and final methods can be overloaded.
+        
+        - ex:-
+          
+          public class Calculator {
+                // Method to add two integers
+                public int add(int a, int b) {
+                    return a + b;
+                }
+                
+                // Method to add three integers
+                public int add(int a, int b, int c) {
+                    return a + b + c;
+                }
+                
+                // Method to add two doubles
+                public double add(double a, double b) {
+                    return a + b;
+                }
+            }
+        
+
+    =>Method Overriding :-
+
+        - Method overriding allows a subclass to provide its specific implementation of a method that's already provided by its parent class or superclass.
+        - Method overriding is a run-time polymorphism.
+        - Method overriding always needs inheritance.
+        - In method overriding, methods must have the same name and same parameters.
+        - Dynamic binding is being used for overriding methods
+        - It gives better performance
+        - Private and final methods can’t be overridden.
+        - The argument list should be the same in method overriding.
+        - ex :- 
+            class Animal {
+                public void makeSound() {
+                    System.out.println("Animal makes a sound");
+                }
+            }
+            
+            class Dog extends Animal {
+                // Overrides the makeSound method in the superclass
+                public void makeSound() {
+                    System.out.println("Dog barks");
+                }
+            }
+
+
+
+(6.) pass by value vs pass by reference in java
+
+    => Pass By Value:
+        
+        - In pass by value, a copy of the actual value of an argument is passed to the parameter of the method.
+        - Any changes made to the parameter inside the method do not affect the original value of the argument. 
+        - Java is Strictly Pass by Value
+        -ex :-
+            
+            public class PassByValueExample {
+                void modifyValue(int x) {
+                    x = x + 1;
+                }
+            
+                public static void main(String[] args) {
+                    PassByValueExample example = new PassByValueExample();
+                    int num = 5;
+                    example.modifyValue(num);
+                    System.out.println(num); // Output: 5 (num remains unchanged)
+                }
+            }
+
+    => Pass By reference :-
+
+        - In pass by reference, a reference of the actual object is passed to the parameter of the method , not the actual object itself.
+        - This means that changes made to the object's state inside the method will affect the original object outside the method.
+        - while Java is Strictly Pass by Value , the behavior with objects resembles "pass by reference" because you are passing a copy of the reference to the object, allowing you to modify the object's state within the method. 
+        - ex :- 
+            class Person {
+                String name;
+                
+                Person(String name) {
+                    this.name = name;
+                }
+            }
+            
+            void changeName(Person p) {
+                p.name = "John"; // Change the name field of the Person object
+            }
+            
+            public static void main(String[] args) {
+                Person person = new Person("Alice");
+                changeName(person);
+                System.out.println(person.name); // Output: John (name field of the original object is changed)
+            }
+
+
+(7.) explain final , static , super and this with ex
+    
+    1. final keyword :-
+        
+        - The final keyword in Java is used to declare constants, variables, methods, and classes. 
+        - Once assigned, a final variable's value cannot be changed
+        - A final method cannot​ be overridden, nor can it be hidden by a subclass.
+        - Final method cannot be inherited.
+        - We cannot declare a final class as abstract at the same time
+        - ex:
+            public class FinalExample {
+
+                final int CONSTANT_VALUE = 10; // Final variable
+            
+                final void display() { // Final method
+                    System.out.println("This is a final method.");
+                }
+            
+                public static void main(String[] args) {
+                    FinalExample example = new FinalExample();
+                    System.out.println(example.CONSTANT_VALUE); // Output: 10
+                    example.display(); // Output: This is a final method.
+                }
+            }
+            
+    
+    2. static :-
+
+        - In order to share the same method or variable of any given class, the static keyword is used. 
+        - static variable and methods can be accessed without creating an object of the class.
+        - Static variables can be reinitialized.
+        - static variables and methods belong to the class rather than object
+        - Static methods can only access the static members of the class and can only be called by other static methods.
+        - Static class object can’t be created and it only contains static members only.
+        -ex:
+            public class StaticExample {
+                    static int count = 0; // Static variable
+                
+                    static void incrementCount() { // Static method
+                        count++;
+                    }
+                
+                    public static void main(String[] args) {
+                        StaticExample.incrementCount(); // Accessing static method
+                        System.out.println(StaticExample.count); // Accessing static variable
+                    }
+                }
+        - Static block is used to initialize the static variables.
+        - ex: 
+            public class StaticVariableExample {
+
+                static int count;
+            
+                static {
+                    count = 10;
+                    System.out.println("Static block initialized count to: " + count);
+                    //the sout will be printed first on loading of a programm
+                }
+            
+                public static void main(String[] args) {
+                    System.out.println("Value of count: " + count);
+                }
+            }
+
+
+    3. super :-
+
+        - The super keyword in Java is used to access members of the superclass (parent class).
+        - It is used to call the constructor, methods, and variables of the superclass.
+        - ex :-
+            class Animal {
+                String sound = "Animal Sound";
+            }
+            
+            class Dog extends Animal {
+                String sound = "Bark";
+            
+                void displaySound() {
+                    System.out.println(super.sound); // Accessing superclass variable
+                }
+            }
+            
+            public class SuperExample {
+                public static void main(String[] args) {
+                    Dog dog = new Dog();
+                    dog.displaySound(); // Output: Animal Sound
+                }
+            }
+ 
+
+    4. this :-
+
+        - The this keyword in Java is used to refer to the current object.
+        - It is primarily used to differentiate between instance variables and parameters with the same name
+        - ex :-
+            class Person {
+                String name;
+            
+                Person(String name) {
+                    this.name = name; 
+                }
+            
+                void display() {
+                    System.out.println("Name: " + this.name); 
+                }
+            }
+            
+            public class ThisExample {
+                public static void main(String[] args) {
+                    Person person = new Person("John");
+                    person.display(); // Output: Name: John
+                }
+            }
+            

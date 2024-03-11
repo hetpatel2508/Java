@@ -1,0 +1,378 @@
+(1.) Inheritance : define , types, ex
+
+    - Inheritance is the mechanism by which a new class (subclass) is created, inheriting the features of an existing class (superclass)
+    - We can add new features on that new class to modify existing class
+    - The subclass can access all non-private members of the superclass.
+    - The class which inherits the properties of other is known as subclass (derived class, child class)
+    - The class whose properties are inherited is known as superclass (base class, parent class).
+    - syntax :- 
+        class super_class{
+            ....
+        };
+        class sub_class extends super_class{
+            ....
+        };
+
+    - ex:-
+            class Animal {
+                void eat() {
+                    System.out.println("Animal is eating.");
+                }
+            }
+            
+            class Dog extends Animal {
+                void bark() {
+                    System.out.println("Dog is barking.");
+                }
+            }
+            
+            public class Main {
+                public static void main(String[] args) {
+                    Dog dog = new Dog();
+                    dog.eat(); // Output: Animal is eating.
+                    dog.bark(); // Output: Dog is barking.
+                }
+            }
+            
+
+    =>Types of Inheritance :
+        
+        1. Single Inheritance :-
+            
+            - In single inheritance, a subclass only inherit the features of one superclass.
+            - class A serves as a base class for the derived class B.
+                        -----
+                        | A |
+                        -----
+                          ^
+                          |
+                          |
+                          |
+                        -----
+                        | B |
+                        -----
+            
+            - ex:
+            
+                class Vehicle {
+                    void start() {
+                        System.out.println("Vehicle is starting.");
+                    }
+                }
+                
+                class Car extends Vehicle {
+                    void drive() {
+                        System.out.println("Car is driving.");
+                    }
+                }                        
+
+
+        2. Multilevel Inheritance :-
+
+            - In Multilevel Inheritance, a derived class will be inheriting a base class, and that derived class will also got inherited by other class.
+            - And forme a chain of inheritance.
+            - class A serves as a base class for the derived class B.
+            - class B serves as a base class for the derived class C.
+            - 
+                        -----
+                        | A |
+                        -----
+                          ^
+                          |
+                          |
+                          |
+                        -----
+                        | B |
+                        -----
+                          ^
+                          |
+                          |
+                          |
+                        -----
+                        | c |
+                        -----
+            - ex:-
+                class Vehicle {
+                    void start() {
+                        System.out.println("Vehicle is starting.");
+                    }
+                }
+
+                class Car extends Vehicle {
+                    void drive() {
+                        System.out.println("Car is driving.");
+                    }
+                }
+
+                class SUV extends Car {
+                    void offRoad() {
+                        System.out.println("SUV is off-roading.");
+                    }
+                }
+
+                public class Main {
+                    public static void main(String[] args) {
+                        SUV suv = new SUV();
+                        suv.start(); // Output: Vehicle is starting.
+                        suv.drive(); // Output: Car is driving.
+                        suv.offRoad(); // Output: SUV is off-roading.
+                    }
+                }
+
+
+        3. Hierarchical Inheritance :-
+
+            - In hierarchical inheritance, multiple subclasses are inherited from the same superclass.
+            - class A serves as a base class for the derived classes B, C, and D.
+                                        -----
+                                        | A |
+                                        -----
+                                          ^
+                                          |
+                         -----------------|----------------
+                         |                |               |
+                         |                |               |
+                       -----            -----           -----
+                       | B |            | C |           | D |
+                       -----            -----           -----
+
+            - ex:- 
+               
+                class Animal {
+                    void eat() {
+                        System.out.println("Animal is eating.");
+                    }
+                }
+                
+                class Dog extends Animal {
+                    void bark() {
+                        System.out.println("Dog is barking.");
+                    }
+                }
+                
+                class Cat extends Animal {
+                    void meow() {
+                        System.out.println("Cat is meowing.");
+                    }
+                }
+                
+                public class Main {
+                    public static void main(String[] args) {
+                        
+                        Dog dog = new Dog();
+                        dog.eat(); // Output: Animal is eating.
+                        dog.bark(); // Output: Dog is barking.
+                        
+                        Cat cat = new Cat();
+                        cat.eat(); // Output: Animal is eating.
+                        cat.meow(); // Output: Cat is meowing.
+
+                    }
+                }
+
+
+        4. Multiple Inheritance 
+
+            - In multiple inheritance, a subclass extends more than one superclass.
+            - Java does not support multiple inheritance for classes to avoid the diamond problem
+            - In Java, we can achieve multiple inheritances only through Interfaces.
+            - Multiple Inheritance is done in java Through Interfaces
+            - class B,C,D serves as a base class for the derived classes A.
+
+                       -----            -----           -----
+                       | B |            | C |           | D |
+                       -----            -----           -----
+                         ^                ^               ^
+                         |                |               |  
+                         |                |               |
+                         |                |               |
+                         -----------------|----------------
+                                        -----
+                                        | A |
+                                        -----
+
+            - ex:-
+
+                interface Swim {
+                    void swim();
+                }
+                
+                interface Fly {
+                    void fly();
+                }
+                
+                class Duck implements Swim, Fly {
+                    @Override
+                    public void swim() {
+                        System.out.println("Duck is swimming.");
+                    }
+                
+                    @Override
+                    public void fly() {
+                        System.out.println("Duck is flying.");
+                    }
+                }
+                
+                public class Main {
+                    public static void main(String[] args) {
+
+                        Duck duck = new Duck();
+                        duck.swim(); // Output: Duck is swimming.
+                        duck.fly();  // Output: Duck is flying.
+                    }
+                }
+
+
+(2.) Polimorphism : define , types , method overriding , ex
+
+    - Polymorphism means "many forms" in Greek. 
+    - Polymorphism is the ability of an object to take on many forms
+    - Polymorphism allows objects of different classes to be treated as objects of a common superclass.
+    - Polymorphism allows us to perform a single action in different ways.
+    - Polymorphism refers to the ability of objects to exhibit different behaviors or functionalities while sharing a common interface.
+
+    => Types of Polymorphism:
+        - In Java Polymorphism is mainly divided into two types: 
+
+            1. Compile-time Polymorphism :
+
+                - It is also known as static polymorphism
+                - It is achieved by method overloading or operator overloading, while Java doesn’t support the Operator Overloading.
+                - Method overloading allows a class to have multiple methods with the same name but different parameters.
+                - The compiler determines which method to call based on the method parameters at compile time.
+                - //about method overloading from previous chapter with ex mentioned there
+
+
+            2. Run-time Polymorphism :
+
+                - It is also known as Dynamic Method Dispatch
+                - It is achieved by method overriding 
+                - The decision of which method to call is made at runtime based on the actual object type.
+                - // about overriding
+                - ex:-
+                    class Animal {
+                        void Output() {
+                            System.out.println("Animal is eating.");
+                        }
+                    }
+
+                    class Dog extends Animal {
+                        void Output() {
+                            System.out.println("Dog is barking.");
+                        }
+                    }
+
+                    public class Main {
+                        public static void main(String[] args) {
+
+                            Animal anm = new Animal(); 
+                            anm.Output(); // Output: Animal is barking.
+
+                            Animal anm_dog = new Dog();
+                            anm_dog.Output(); // Output: Dog is barking.
+
+                            Dog dog= new Dog();
+                            dog.Output(); // Output: Dog is barking.
+                        }
+                    }
+
+
+(3.) Abstract vs Interface in java with  ex
+
+    //Abstract = Method without a body
+
+                            Abstract                                                             Interface
+    
+    1. Abstract class can have abstract and non-abstract methods.           1. Interface can have only abstract methods. Since Java 8, it can have default and static methods also.
+    2. Multiple Inheritance is not supported.                               2. Interface supports Multiple Inheritance.
+    3. final, non-final, static and non-static variables supported.         3. Only static and final variables are permitted.
+    4. Abstract class can implement an interface.                           4. Interface can't provide the implementation of abstract class.
+    5. The abstract keyword is used to declare abstract class.              5. The interface keyword is used to declare interface.
+    6. 	Abstract class can have any type of members like private, public.   6. Interface can only have public members.
+
+    => Abstract : Abstract classes are used in scenarios where you want to define a common interface for a group of subclasses while providing some default functionality. 
+
+        ex:-
+            abstract class Animal {
+                abstract void eat(); // Abstract method
+            
+                void sleep() {      // Concrete method
+                    System.out.println("Animal is sleeping.");
+                }
+            }
+            
+            class Dog extends Animal {
+                void eat() { // Implementation of abstract method
+                    System.out.println("Dog is eating.");
+                }
+            
+                void sleep() { // Redefining the sleep method
+                    System.out.println("Dog is sleeping.");
+                }
+            }
+            
+    => Interface : Interfaces are apecifically used to implement multiple inheritance
+
+        ex:- 
+            interface Animal {
+                void eat(); // Abstract method
+            
+                default void sleep() { // Default method with a default implementation
+                    System.out.println("Animal is sleeping.");
+                }
+            }
+            
+            class Dog implements Animal {
+                public void eat() { // Implementation of abstract method
+                    System.out.println("Dog is eating.");
+                }
+            
+                public void sleep() { // Redefining the sleep method
+                    System.out.println("Dog is sleeping.");
+                }
+            }
+            
+
+(4.) how to create packages in java with ex with user defined packages...! 
+
+    => Create user defined packages :-
+
+        package pkg;    //package location
+        import java.util.Scanner;
+        
+        public class Test {
+            
+            public void oddeve(int num1){ // Remove the static keyword
+                if (num1 % 2 == 0) {
+                    System.out.println(num1 + " is even");
+                } 
+                else {
+                    System.out.println(num1 + " is odd");
+                }        
+            }
+        
+            public static void main(String[] args) {
+                Scanner sc = new Scanner(System.in);
+        
+                System.out.print("Enter Number: ");
+                int num1 = sc.nextInt();
+                
+                Test t = new Test();
+                t.oddeve(num1); // Call the method using an instance of the Test class
+        
+                sc.close();
+            }
+        }
+        
+
+    => Use User Defined package :-
+
+        import pkg.temp; // Import the temp class from the pkg package
+
+        public class Test {
+            public static void main(String[] args) {
+                temp t = new temp();
+                t.oddeve(10); // Call the oddeve method from the Test class
+            }
+        }
+        

@@ -10,20 +10,19 @@
         1. checked exception
         2. unchecked exception
     -checked exception =
-            ClassNotFoundException,
-            InterruptedException,
             IOException,
-            InstantiationException,
-            SQLException,
+            ClassNotFoundException,
             FileNotFoundException,
+            SQLException,
+            SocketException,
+            InterruptedException,
     -unchecked exception = 
             ArithmaticException,
-            ClassCastException,
             NullPointerException,
             ArrayINdexOutOfBoundsException,
             ArrayStoreException,
             IllegalThreadStateException,
-    
+            IllegalArgumentException,
 
     =>try,catch and finally :-
 

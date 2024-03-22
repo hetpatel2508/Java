@@ -61,4 +61,5 @@
 
 (2.) Thread synchronization with ex
 
+what is multithreading? explain thread life cycle
     

@@ -1,0 +1,212 @@
+(1.) Explain General Register Organization 
+
+    - General Register Organization refers to the arrangement, functionality, and usage of registers within a CPU.
+    - in CPU, Registers are small, high-speed storage elements located within the CPU, used to temporarily hold data and instructions during processing.
+    - Types of Registers:
+        - Data Registers
+        - Address Registers
+        - (for more types ch2 q1)
+    - Functionality:
+        - Data registers are used for arithmetic, logical, and data manipulation operations.
+        - Address registers facilitate memory addressing and data access.
+        - Control registers manage CPU operation, including program execution, interrupt handling, mode switching,etc...
+    - When a large number of registers are included in the CPU, it is most efficient to connect them through a common bus system.
+    - data is transferred between registers and other CPU components via data buses.
+    - Instructions manipulates data stored in registers,by performing arithmetic, logical, and data movement operations.
+    - for diagram check coding gang group
+    
+    => Explaining Using Block Diagram method:
+
+    - Block diagram of General registers Organization is in notebook
+    - Block diagrams visually represent the arrangement of registers within the CPU and their connections.
+    - A bus organization for seven CPU registers is shown in Figure.
+    - The output of each register is connected to two multiplexers (MUX) to form the two buses A and B. 
+    - The selection lines in each multiplexer select one register or the input data for the particular bus.
+    - The A and B buses are inputs to a common Arithmetic Logic Unit (ALU).
+    - The operation selected in the ALU determines the arithmetic or logic micro-operation that is to be performed
+    - The result of that micro-operation is available for output data and also goes into the inputs of all the registers.
+    - The register which receives the information from the output bus is selected by a decoder.
+    - The decoder activates one of the register load inputs.
+
+    - The control unit(CU) manages the CPU bus system.
+    - The control unit directs the flow of information through the registers and ALU.
+    - ALU built with high-speed circuits to ensure rapid processing and Minimizes delays in data manipulation.
+    - The control unit selects various components in the system to execute instructions.
+    
+    - For example, to perform the operation 
+        R1 <--R2 + R3
+        - the control must provide binary selection variables to the following selector inputs: 
+            1. MUX A selector (SELA): to place the content of R2 into bus A. 
+            2. MUX B selector (SELB): to place the content of R3 into bus B. 
+            3. ALU operation selector (OPR): to provide the arithmetic addition A+B. 
+            4. Decoder destination selector (SELD): to transfer the content of the output bus into R1.
+
+    - The control unit (CU) generates four control selection variables 
+    - These variables are required at the beginning of each clock cycle.
+    
+    => Explaining Using Control Word method:
+        
+    - The control word consists of 14-bit binary inputs.
+    - control word is divided into four fields: SELA, SELB, SELD, and OPR(operator register).
+    - SELA, SELB, and SELD have 3-bits each, while OPR has 5-bits.
+    - SELA selects the source register for the ALU's A input.
+    - SELB selects the source register for the ALU's B input.
+    - SELD selects the destination register using the decoder's load outputs.
+    - OPR selects an operation in the ALU.
+
+    - Binary  SELA  SELB  SELD
+       Code
+
+        000   Input Input None
+        001    R1    R1    R1
+        010    R2    R2    R2
+        011    R3    R3    R3
+        100    R4    R4    R4
+        101    R5    R5    R5
+        110    R6    R6    R6
+        111    R7    R7    R7
+
+    - Table above specifies the encoding of register selections.
+    - When SELA or SELB is 000, the multiplexer selects external input data(je 7 register thi different 6).
+    
+    - in short table ne samjavu....
+    - Each 3-bit binary code corresponds to a decimal number representing a register.
+    - When SELD is 000, no destination register is selected, but the output bus contents are available externally.
+    - The ALU provides arithmetic, logic, and shift operations.
+    - Shift operations can be placed before or after the ALU or included within it.
+    - Table above specifies the encoding of ALU operations for the CPU, with each operation designated by a symbolic name.
+
+
+(2.) Define stack? Explain 64bit word stack using PUSH and POP Operations.
+
+    - A stack is a linear data structure
+    - Here the last element added to the stack is the first one to be removed
+    - elements are added or removed from the top of the stack.
+    - A stack in a CPU stores information in a last-in, first-out (LIFO) manner.
+    - It operates like a stack of trays, where the last tray placed on top is the first tray to be removed.
+    - The stack has a stack pointer register (SP) that points to the top item in the stack.
+    - The SP value indicates the memory address of the top item.
+    - Stack Operations:
+        - Push: Adding an item to the stack (simulated by incrementing the SP).
+        - Pop: Removing an item from the stack (simulated by decrementing the SP).
+
+    =>Register Stack 
+
+    - A stack can be a piece of large memory or a group of memory words or registers.
+    - Organization of a 64-word register stack:
+        - The stack is organized with 64 words.
+        - There's a special register called the stack pointer register (SP), which holds a binary number.
+        - This binary number equals the address of the word currently at the top of the stack. 
+    - Adding items to the stack:
+        - Initially, items A, B, and C are placed in the stack in that order.
+        - So, C becomes the top item, and the content of SP becomes 3.   
+    - Removing items from the stack:
+        - To remove the top item, the stack is "popped" by reading the memory word at address 3 and decreasing the content of SP.
+        - Now, item B is at the top since SP holds address 2.
+    - Inserting new items into the stack:
+        - To add a new item, the stack is "pushed" by increasing SP and writing a word in the next available space in the stack.
+        - Even though item C was read out, it's not physically removed. This is okay because when a new item is pushed, it's written in place of the previous top item.
+
+    - In a 64-word stack, the stack pointer has 6 bits because 2^6 = 64.
+    - The stack pointer can't go beyond 63 because it only has 6 bits.
+    
+    - To handle Overflow and Underflow: 
+        - There are two one-bit registers
+        - FULL indicates if the stack is full, 
+        - EMPTY shows if it's empty.
+
+    - DR is the data register that holds binary data for writing into or reading from the stack.
+    
+    - If the stack isn't full, a new item is added using a push operation.
+    - The push operation involves:
+        - The stack pointer(SP) increases to point to the next memory location.
+        - The data from register DR is written into the top of the stack.
+        - SP holds the address of the top item, and M[SP] represents the memory word at that address.
+        - Checking if the stack is full and updating FULL accordingly.
+        - Marking the stack as not empty.
+
+        - SP <- SP + 1 Increment stack pointer
+        - M [SP] <- DR Write item on top of the stack
+        - If (SP = 0) then (FULL <--1) Check if stack is full
+        - EMTY <--0 Mark the stack not empty
+
+    - The first item is at address 1, and the last one is at address 0.
+    - When SP reaches 0, the stack is full, so FULL is set to 1.
+    - This happens when the top item before the last push was at location 63, and after incrementing SP, the last item is at location 0.
+    - Once an item is stored at location 0, all registers in the stack are full
+
+    - The pop operation involves:
+        - The top item is read from the stack into register DR.
+        - Then, the stack pointer is decreased.
+        - If it reaches zero, the stack is empty, so EMTY is set to L.
+        - This happens when the item read was at location L. Once it's read, SP is decremented and returns to its initial value of 0.
+
+        - DR <--M [SP] Read item from the top of stack
+        - SP <--SP - 1 Decrement stack pointer
+        - If (SP = 0) then (EMTY <--1) Check if stack is empty
+        - FULL <--0 Mark the stack not full
+        
+    - If a pop operation reads the item from location 0 and then SP is decremented, SP changes to 111111 (binary) or decimal 63.
+    - At this point, the word in address 0 holds the last item in the stack.
+
+    - If the stack is full (FULL = 1), pushing more items will cause an error.
+    - Similarly, if the stack is empty (EMTY = 1), popping items will result in an error.
+
+
+(3.) Write a note on different Addressing modes.
+
+    - Addressing modes in computer architecture define how operands are identified in machine instructions.
+    - They specify the method by which the CPU fetches data from memory or registers to execute operations.
+    - Addressing modes serve two main purposes:
+        - Addressing modes offer programming flexibility by providing tools such as memory pointers, loop counters, etc...
+        - They help reduce the number of bits needed in the instruction's address field.
+    
+    - To grasp the different addressing modes discussed in this section, it's crucial to understand the basic operation cycle of a computer. 
+    - The control unit of a computer follows an instruction cycle divided into three main phases:
+        Fetch: The instruction is fetched from memory.
+        Decode: The instruction is decoded to understand what operation needs to be performed.
+        Execute: The instruction is executed, carrying out the specified operation.
+    - The PC is a register in the computer that keeps track of instructions in the program stored in memory.
+    - It holds the address of the next instruction to be executed.
+    - The PC is incremented each time an instruction is fetched from memory.
+    -During this phase, the computer determines:
+        - The operation to be performed,
+        - The addressing mode of the instruction,
+        - The location of the operands.
+    - The computer executes the instruction based on the decoded information.
+    - After executing the instruction, the computer returns to step 1 to fetch the next instruction in sequence.
+
+    - Addressing Mode Specification:
+        - In some computers the addressing mode of the instruction is specified with a distinct binary code.
+        - Other computers use a single binary code for both the operation and the mode of the instruction.
+    - Variety of Addressing Modes:
+        - Instructions can have various addressing modes, and sometimes multiple addressing modes are combined in a single instruction.
+    - Special Addressing Modes:
+        - Two addressing modes, implied and immediate, don't require an address field in the instruction.
+
+    - Here's a note on different addressing modes:
+
+        1. 
+
+
+
+(4.) RISC Characteristics
+
+    - The concept of RISC architecture involves an attempt to reduce execution time
+    by simplifying the instruction set of the computer. 
+    
+    =>The major characteristics of a RISC processor are
+        
+        1. Relatively few instructions
+        
+        2, Relatively few addressing modes
+        
+        3. Memory access limited to load and store instructions
+        
+        4. All operations done within the registers of the CPU
+        
+        5. Fixed-length, easily decoded instruction format
+        
+        6. Single-cycle instruction execution
+        
+        7. Hardwired rather than microprogrammed control

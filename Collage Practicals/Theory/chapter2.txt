@@ -185,6 +185,7 @@
                         obj.protectedMethod(); // This is a protected method.
                     }
                 }
+                //error !, AnotherClass is not a subclass of MyClass, so it cannot access the protectedMethod() directly from within its main() method
 
 
     4. private :-
@@ -338,11 +339,10 @@
     
     1. final keyword :-
         
-        - The final keyword in Java is used to declare constants, variables, methods, and classes. 
+        - The final keyword in Java is used to declare constants variables, methods, and classes. 
         - Once assigned, a final variable's value cannot be changed
-        - A final method cannot​ be overridden, nor can it be hidden by a subclass.
-        - Final method cannot be inherited.
-        - We cannot declare a final class as abstract at the same time
+        - A final method is a method that cannot be overridden or modified by subclasses. 
+        - A final class in Java is a class that cannot be subclassed or extended by other classes.
         - ex:
             public class FinalExample {
 
@@ -367,7 +367,7 @@
         - Static variables can be reinitialized.
         - static variables and methods belong to the class rather than object
         - Static methods can only access the static members of the class and can only be called by other static methods.
-        - Static class object can’t be created and it only contains static members only.
+        - The object of Static class can’t be created and it only contains static members only.
         -ex:
             public class StaticExample {
                     static int count = 0; // Static variable
@@ -381,7 +381,7 @@
                         System.out.println(StaticExample.count); // Accessing static variable
                     }
                 }
-        - Static block is used to initialize the static variables.
+        - Static block is used to initialize the static variables in a class.
         - ex: 
             public class StaticVariableExample {
 

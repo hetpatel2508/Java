@@ -290,7 +290,7 @@
     5. The abstract keyword is used to declare abstract class.              5. The interface keyword is used to declare interface.
     6. 	Abstract class can have any type of members like private, public.   6. Interface can only have public members.
 
-    => Abstract : Abstract classes are used in scenarios where you want to define a common interface for a group of subclasses while providing some default functionality. 
+    => Abstract : Abstract classes are Used to define a common interface for group of subclasses while providing some default functionality
 
         ex:-
             abstract class Animal {
@@ -311,7 +311,7 @@
                 }
             }
             
-    => Interface : Interfaces are apecifically used to implement multiple inheritance
+    => Interface : Interfaces are specifically used to implement multiple inheritance
 
         ex:- 
             interface Animal {

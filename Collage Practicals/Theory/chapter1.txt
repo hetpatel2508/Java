@@ -50,6 +50,10 @@
     * Interfaces : 
     
       interfaces act as agreements for classes to follow, detailing what methods they must have without giving the actual code for those methods.
+      
+      An interface is a type that defines a contract for classes to implement. 
+
+      An interface in Java is declared using the interface keyword
 
     * Packages:
     
@@ -60,7 +64,7 @@
       Exception handling in Java is a mechanism that allows developers to gracefully handle errors and unexpected situations that may occur during the execution of a program.   
 
 
-(2.) What is ByteCode? Justify why java is platform Independant
+(2.) What is ByteCode? Justify why java is platform Independent
 
    ByteCode:-  
       
@@ -70,11 +74,13 @@
 
       flow: Program->compiler->ByteCode->JVM->Machine code
 
-      Compiler converts the source code or the Java program into the Byte Code(or machine code),and secondly, the Interpreter executes the byte code on the system. The Interpreter can also be called JVM(Java Virtual Machine).
+      Compiler converts the source code or the Java program into the Byte Code(or machine code),and secondly, the Interpreter executes the byte code on the system. 
+      
+      The Interpreter can also be called JVM(Java Virtual Machine).
 
       The byte code is the common piece between the compiler and the Interpreter .
 
-    why java is platform Independant:-
+    why java is platform Independent:-
 
       Java is platform-independent primarily due to its compilation process and the architecture of the JVM (Java Virtual Machine).
 
@@ -83,7 +89,7 @@
         Compilation to Bytecode:
 
           When you compile a Java source file (.java), the Java compiler translates it into bytecode (.class) instead of native machine code.
-          Bytecode is a set of instructions understood by the Java Virtual Machine (JVM), rather than being specific to any particular hardware or operating system.
+          Bytecode is a set of instructions understood by the Java Virtual Machine (JVM)
           
         Execution by the JVM:
 
@@ -212,3 +218,52 @@
     10. The existing code can be reused.              10. No code reusability.
     11. use for solving big problems.                 11. Not suitable for solving big problems.
     12. c++,java                                      12. c, Pascal
+
+
+(5.) Data Types 
+
+    - data types represent the type of data that can be stored and manipulated by variables in a program
+    
+    - there are 2 types of data types in java
+      1.Primitive 
+      2.Non-Primitive
+    
+    - Primitive Data Types:
+      - Primitive data types are basic data types provided by the programming language.
+      - They typically represent simple values and have fixed sizes in memory.
+      - Primitive data types are stored directly in memory and accessed directly by the program.
+      - Operations on primitive data types are usually faster and more memory-efficient compared to non-primitive data types.
+      - Primitive data types include
+        1. byte : 
+          - takes 1 bit 
+          - range -(2^8)/2  to   (2^8)/2 - 1
+        2. short:
+          - takes 2 bit 
+          - range -(2^16)/2  to   (2^16)/2 - 1
+        3. int :
+          - takes 4 bit 
+          - range -(2^32)/2  to   (2^32)/2 - 1
+        4. long:
+          - takes 8 bit 
+          - range -(2^64)/2  to   (2^64)/2 - 1
+        5. float :
+          - takes 4 bit 
+          - range undefined
+          - store floating point value
+        6. double:
+          - takes 8 bit 
+          - range undefined
+          - store floating point value
+        7. char :
+          - takes 2 bit 
+          - range 0 to  (2^16)/2 - 1
+        8. boolean :
+          - size depends on JVM
+          - true or false
+          - default value is false
+    
+    - Non-Primitive Data Types:
+      - Non-primitive data types are more complex data types as composed to primitive data 
+      - They are also known as reference types 
+      - They store references, which are memory addresses pointing to objects, 
+      - Non-primitive data types include classes, arrays, and interfaces in Java.

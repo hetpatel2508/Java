@@ -186,7 +186,48 @@
 
     - Here's a note on different addressing modes:
 
-        1. 
+        1. Immediate Addressing:
+            • In immediate addressing, the operand is a constant value or immediate data 
+            embedded within the instruction itself.
+            • Example: MOV R1, #10 - Moves the immediate value 10 into register R1.
+
+        2. Register Addressing:
+            • In register addressing, the operand is located in a CPU register.
+            • Example: ADD R1, R2 - Adds the contents of register R2 to register R1.
+
+        3. Direct Addressing:
+            • In direct addressing, the operand is the memory address where the data is stored.
+            • Example: LOAD R1, 1000 - Loads the data stored at memory address 1000 into 
+            register R1.
+
+        4. Indirect Addressing:
+            • In indirect addressing, the operand is a memory address that points to the location 
+            of the actual data.
+            • Example: LOAD R1, (R2) - Loads the data stored at the memory address stored in 
+            register R2 into register R1.
+
+        5. Indexed Addressing:
+            • In indexed addressing, the operand is calculated by adding an offset to a base 
+            address.
+            • Example: LOAD R1, (R2 + 4) - Loads the data stored at the memory address 
+            obtained by adding 4 to the contents of register R2 into register R1.
+
+        6. Relative Addressing:
+            • In relative addressing, the operand is specified relative to the current instruction's 
+            address.
+            • Example: JMP label - Jumps to the instruction labeled "label" located a certain 
+            number of bytes away from the current instruction.
+
+        7. Base or Register Indirect with Displacement Addressing:
+            • Combines elements of register and indirect addressing with an additional 
+            displacement value.
+            • Example: LOAD R1, 100(R2) - Loads the data stored at the memory address 
+            obtained by adding 100 to the contents of register R2 into register R1.
+            
+        8. Stack Addressing:
+            • In stack addressing, the operand is implicitly or explicitly accessed from the top of 
+            the stack.
+            • Example: PUSH R1 - Pushes the contents of register R1 onto the stack
 
 
 

@@ -1,6 +1,6 @@
 (1.) what is exception ? explain try, catch, and finally with ex
 
-    - An exception in Java is an event that occurs during the execution of a program, disrupting the normal flow of the program's instructions
+    - An exception in Java is an event that occurs during the execution of a program, which disrupting the normal flow of the program's instructions
     - Exceptions can occur for various reasons, such as incorrect input, invalid operations, or unexpected conditions, etc...
     - They can be handled using Java's exception handling mechanism.
     - Types Of Exceptions:

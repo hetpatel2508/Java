@@ -24,7 +24,7 @@
         1. Default Constructor :-
 
              -A constructor with no parameters is called Default Constructor.
-             -It initializes the object's members to default values provided in Constructor.
+             -It initializes the object's members to some default values 
 
              ex:- 
                 public class Box {
@@ -159,7 +159,7 @@
                 public class AnotherClass {
                     public static void main(String[] args) {
                         MyClass obj = new MyClass();
-                        obj.defaultMethod(); // This is a default method.
+                        obj.defaultMethod(); // This is a default method. // error will be shown
                     }
                 }
 
@@ -179,14 +179,13 @@
                 }
 
             //AnotherClass.java
-                public class AnotherClass {
+                public class AnotherClass extend MyClass {
                     public static void main(String[] args) {
-                        MyClass obj = new MyClass();
-                        obj.protectedMethod(); // This is a protected method.
+                        public void method() {
+                        super.protectedMethod(); // This is a protected method.
+                        }
                     }
                 }
-                //error !, AnotherClass is not a subclass of MyClass, so it cannot access the protectedMethod() directly from within its main() method
-
 
     4. private :-
 
@@ -213,20 +212,25 @@
 
 (4.) string vs StringBuffer with ex               
     
-                string                                           StringBuffer 
+                string                                 StringBuffer 
 
-    1. The String class is immutable.  1.The StringBuffer class is mutable.
+    1. The String class is mutable.    1.The StringBuffer class is immutable.
     2. As for Performance, It is slow  2.As for Performance, It is fast
-    3. it can’t be modified            3.its object can be modified 
+    3. it can be re-modified           3.its object can't be re-modified 
     4. Methods are not synchronized    4.All methods are synchronized in this class. 
        in this class. 
     5. it uses String constant pool    5.it uses Heap memory
     6. it consumes more memory         6.it consumes less memory
     7. ex:-                            7. ex:- 
-        String str = "Hello";               StringBuffer result = new StringBuffer();
-        str += " World";                    result.append("Hello");
-        System.out.println(str);            result.append(" World");
+        String str1 = "Hello";              StringBuffer result = new StringBuffer();
+        String str1 = "Hello";              StringBuffer result2 = new StringBuffer();
+        String str2 = str1 + " World";      result2=result;
+            System.out.println(str2);       result.append("Hello");
+                                            result.append(" World");
                                             System.out.println(result);
+                                            System.out.println(result2);
+    8. String s = "Hello"              8. StringBuffer s = "Hello"  
+       s = "World" //allowed               s = "World" //not allowed                                        
 
 
 
@@ -312,7 +316,7 @@
 
     => Pass By reference :-
 
-        - In pass by reference, a reference of the actual object is passed to the parameter of the method , not the actual object itself.
+        - In pass by reference, a reference of the actual object is passed to the parameter of the method.
         - This means that changes made to the object's state inside the method will affect the original object outside the method.
         - while Java is Strictly Pass by Value , the behavior with objects resembles "pass by reference" because you are passing a copy of the reference to the object, allowing you to modify the object's state within the method. 
         - ex :- 
@@ -342,9 +346,9 @@
         - The final keyword in Java is used to declare constants variables, methods, and classes. 
         - Once assigned, a final variable's value cannot be changed
         - A final method is a method that cannot be overridden or modified by subclasses. 
-        - A final class in Java is a class that cannot be subclassed or extended by other classes.
+        - A final class in Java is a class that cannot be subclassed or extended by other classes or Inherited.
         - ex:
-            public class FinalExample {
+            final class FinalExample {          // Final Class
 
                 final int CONSTANT_VALUE = 10; // Final variable
             
@@ -352,36 +356,53 @@
                     System.out.println("This is a final method.");
                 }
             
-                public static void main(String[] args) {
-                    FinalExample example = new FinalExample();
-                    System.out.println(example.CONSTANT_VALUE); // Output: 10
-                    example.display(); // Output: This is a final method.
+            }
+
+            public class Test 
+            {
+                public static void main(String args[]) 
+                {
+                        FinalExample example = new FinalExample();
+                        System.out.println(example.CONSTANT_VALUE); // Output: 10
+                        example.display(); // Output: This is a final method.
                 }
             }
+
             
     
     2. static :-
 
         - In order to share the same method or variable of any given class, the static keyword is used. 
-        - static variable and methods can be accessed without creating an object of the class.
         - Static variables can be reinitialized.
+        - Static methods can only access the static members of the class 
+        - Static method can only be called by other static methods.
+        - The object of Static class can’t be created 
+        - Static class contains static members only.
         - static variables and methods belong to the class rather than object
-        - Static methods can only access the static members of the class and can only be called by other static methods.
-        - The object of Static class can’t be created and it only contains static members only.
+        - static variable and methods can be accessed without creating an object of the class.
         -ex:
             public class StaticExample {
-                    static int count = 0; // Static variable
-                
-                    static void incrementCount() { // Static method
-                        count++;
-                    }
-                
-                    public static void main(String[] args) {
-                        StaticExample.incrementCount(); // Accessing static method
-                        System.out.println(StaticExample.count); // Accessing static variable
+
+                static int count = 0; // Static variable
+            
+                static void incrementCount() { // Static method
+                    count++;
+                }
+            
+                static class Output { // static class
+                    static void display() {
+                        System.out.println("I am static class");
                     }
                 }
-        - Static block is used to initialize the static variables in a class.
+            
+                public static void main(String[] args) {
+                    incrementCount(); // Accessing static method
+                    System.out.println(count); // Accessing static variable
+                    Output.display(); // Accessing static class's method
+                }
+            }
+
+        - Static block can also be used to initialize the static variables in a class.
         - ex: 
             public class StaticVariableExample {
 

@@ -3,7 +3,8 @@
     - A thread in Java represents a separate flow of execution within a program. 
     - It allows concurrent execution of multiple tasks
     - It enables programs to perform multiple operations simultaneously.
-    - A Thread is a very light-weighted process, or we can say the smallest part of the process that allows a program to operate more efficiently by running multiple tasks simultaneously.
+    - A Thread is a very light-weighted process
+    - it is the smallest part of the process that allows a program to operate more efficiently by running multiple tasks simultaneously.
 
     => Life Cycle of a Thread : 
         image link = https://media.geeksforgeeks.org/wp-content/uploads/20230620182419/Lifecycle-and-States-of-a-Thread-in-Java-768.png
@@ -30,7 +31,7 @@
             - A thread remains in the running state until it either voluntarily gives up control, encounters a blocking operation, or its time slice expires.
         
         4. Blocked State :
-            - he thread will be in blocked state when it is trying to acquire a lock but currently the lock is acquired by the other thread.
+            - the thread will be in blocked state when it is trying to acquire a lock but currently the lock is acquired by the other thread.
             - While in this state, the thread cannot execute its code until the condition for which it is waiting is satisfied.
             - Once the condition is met, the thread transitions back to the runnable state.
             -ex:
@@ -42,7 +43,8 @@
 
         5. Waiting State :
             - Threads enter the waiting state when they explicitly call methods like wait(), join(), or sleep().
-            - It will move to the runnable state when other thread will notify or that thread will be terminated.
+            - A thread transitions back to the runnable state only when another thread signals waiting thread to continue.
+            - ex : Thread.sleep(); // Wait
             
         6. Timed Waiting State :
             - Threads enter the timed waiting state when they call methods like sleep() or join() with a specified timeout.
@@ -59,7 +61,106 @@
             -ex : thread.join(); // Wait for thread to terminate
 
 
-(2.) Thread synchronization with ex
+(2.) Explain thread Synchronization
 
-what is multithreading? explain thread life cycle
+  - Thread synchronization is the process of coordinating the execution of multiple threads to ensure that they access shared resources or critical sections of code in a safe and orderly manner. 
+  - In multithreaded environments, without proper synchronization, threads can interfere with each other's execution and produce unpredictable or incorrect results.
+
+ => Why Synchronize Threads :-
+  
+  - Consider a scenario where multiple threads access and modify a shared variable simultaneously. 
+  - Without synchronization, race conditions may occur, leading to data inconsistency or unexpected behavior. 
+  - Synchronization mechanisms ensure that only one thread can access the shared resource or critical section at a time, preventing race conditions and maintaining data integrity.
+
+ => Concepts :-
+
+  - Critical Sections: Blocks of code that access shared resources and must be executed atomically.
+  
+  - Synchronized Methods and Blocks: Mechanisms for ensuring that only one thread can execute a method or block at a time, using locks associated with objects.
+  
+  - Static Synchronization: Synchronizing access to static fields or methods of a class.
+  
+  - Volatile Keyword: Ensures visibility of changes to variables accessed by multiple threads without synchronization.(it is like locks and mutex)
+  
+  - Lock Objects: Explicit lock objects for more advanced synchronization needs, provided by the java.util.concurrent.locks package. 
+  
+ => Thread synchronization is crucial for writing concurrent programs that maintain data consistency and avoid race conditions. 
+   It's essential for ensuring the correct behavior of multithreaded applications
+   
+   => Example :-
+
+    public class Counter 
+    {
+        private int count = 0;
+        public synchronized void increment() 
+        {
+            count++;
+        }
     
+        public void decrement() 
+        {
+            synchronized (this) 
+            {
+                count--;
+            }
+        }
+    
+        public int getCount() 
+        {
+            return count;
+        }
+    }
+
+(3.) Runnable Interface
+
+  - A runnable interface is an interface that contains a single method.
+  - In Java, the Runnable interface serves as a functional interface used for defining tasks that can be executed by a thread. 
+  - It's an alternative to extending the Thread class directly and provides a more flexible way to define and manage threads. 
+  - The Runnable interface has a single abstract method, run(), which represents the entry point for the thread's execution. 
+  - When a class implements the Runnable interface, it must provide an implementation for the run() method. 
+
+  => Steps for Creating a Thread Using Runnable Interface in Java :- 
+
+    - Create a class and implement the Runnable interface by using the implements keyword.
+    - Override the run() method inside the implementer class.
+    - Create an object of the implementer class in the main() method.
+    - Implementation of the Thread class and pass the object to the Thread constructor.
+    - Call start() on the thread. 
+    - start() will call the run() method.
+
+  => Implementation of the Runnable Interface in Java :-
+
+    - Implementation of the run() method is the easiest way of creating a new thread. It acts as a starting point for creating a new Thread. 
+    - The runnable interface implementation uses the code inside the run() method and executes it on a concurrent thread. 
+    - You can either invoke class, create new variables, or call the action in the run() method to implement the runnable interface in Java. 
+    - The program ensures that the thread is inactive until it prints the return statement in the code.
+
+  => Example :-
+
+        classs t1 implements Runnable
+            {
+                @Override
+                public void run()
+                {
+                System.out.println("Thread is running");
+                }
+            }
+            
+        public class ClassName
+            {
+            public static void main(String[] args) 
+            {
+                    t1 obj1 = new t1(); 
+                    Thread t = new Thread(obj1); 
+                    t.start();
+            }
+            }
+
+(4.) what is multithreading? 
+
+    - Thread is the instances of a program.
+    - majority of program written nowadays runs as a single thread
+    - multithreading in a JAVA is the concept which enables concurrent executing of multiple threads available within a single program 
+    - in multithreading,tasks can be divided into smaller part of execution , allowing them to run simultaneously on multiple CPU core
+    - in short , Multithreading in Java is a process of executing multiple threads simultaneously.
+    - Multiprocessing and multithreading, both are used to achieve multitasking.

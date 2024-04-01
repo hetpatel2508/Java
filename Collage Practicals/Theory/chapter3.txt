@@ -194,11 +194,15 @@
             - ex:-
 
                 interface Swim {
-                    void swim();
+                    void swim(){
+                        System.out.println("Duck is swimming.");                        
+                    }
                 }
                 
                 interface Fly {
-                    void fly();
+                    void fly(){
+                        System.out.println("Duck is flying.");
+                    }
                 }
                 
                 class Duck implements Swim, Fly {
@@ -333,14 +337,24 @@
             }
             
 
-(4.) how to create packages in java with ex with user defined packages...! 
+(4.) how to create packages in java with ex with user defined packages...!
+
+    - In Java, a package is a mechanism for organizing classes and interfaces into namespaces. 
+    
+    - It helps in preventing naming conflicts and provides a way to encapsulate related classes and interfaces.
+
+    - A package can contain classes, interfaces, sub-packages, and other resources. 
+    
+    - It allows you to group related classes and interfaces together, which makes it easier to manage large code-bases and share code between different parts of a program or between different programs.
+
+    - Packages are declared using the package keyword at the beginning of a Java source file
 
     => Create user defined packages :-
 
         package pkg;    //package location
         import java.util.Scanner;
         
-        public class Test {
+        public class temp {
             
             public void oddeve(int num1){ // Remove the static keyword
                 if (num1 % 2 == 0) {
@@ -357,7 +371,7 @@
                 System.out.print("Enter Number: ");
                 int num1 = sc.nextInt();
                 
-                Test t = new Test();
+                temp t = new temp();
                 t.oddeve(num1); // Call the method using an instance of the Test class
         
                 sc.close();

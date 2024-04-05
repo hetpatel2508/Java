@@ -1,8 +1,3 @@
-import java.util.Scanner;
-
-/**
- * Test
- */
 class student {
     int id;
     String name;
@@ -16,21 +11,13 @@ class student {
 
 class teacher extends student {
     int attendance;
-
-    teacher(int a, int i, String n) {
-        super(i,n);
-        attendance = a;
-    }
-};
-
-class school extends teacher {
     String fees_Details;
 
-    school(String f, int a, int i, String n) {
-        super(a, i, n);
+    teacher(int a, int i, String n,String f) {
+        super(i,n);
+        attendance = a;
         fees_Details = f;
     }
-
     void output()
     {
         System.out.println("Id = "+id);
@@ -41,9 +28,10 @@ class school extends teacher {
     }
 };
 
+
 public class pr15_1 {
     public static void main(String[] args) {
-        school s1 = new school("Paid", 50, 30273, "Het");
+        teacher s1 = new teacher(50, 30273, "Het Patel","Paid");
         s1.output();
     }
 }

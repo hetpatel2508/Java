@@ -1,36 +1,28 @@
-import java.util.Scanner;
-
-/**
- * Test
- */
-class school {
-    int id;
-    String name;
-    static String Course_name;
-
-    school(int i, String n) {
-        id = i;
-        name = n;
-    }
-
-    static {
-        Course_name = "Computer Engineering";
-    }
-
-};
-
 public class pr12_1
- {
+{
+     static class Temp{
+         static String collage_name;
+         static String course_name;
 
-    static String hello = "Hello World";
+         static{
+            collage_name="LDRP ITR";
+            course_name="Computer Engineering";
+         }
 
+         static void display(){
+             System.out.println("Collage Name = "+collage_name);
+             System.out.println("Course Name = "+course_name);
+         }
+     }; 
     public static void main(String[] args) {
-           System.out.println(hello); 
+        
+        System.out.println("For All Student : \n\n");
+        System.out.println("Collage Name = "+Temp.collage_name);
+        System.out.println("Course Name = "+Temp.course_name);
 
-           school s1 = new school(1,"Het");
-           school s2 = new school(1,"Sahil");
+        System.out.println("\nOR\n");
 
-           System.out.println("Id = "+s1.id+"  Name = "+s1.name+" Course Name = "+school.Course_name);
-           System.out.println("Id = "+s2.id+"  Name = "+s2.name+" Course Name = "+school.Course_name);
+        Temp obj = new Temp();
+        obj.display();
     }
 }

@@ -18,8 +18,8 @@
     => Explaining Using Block Diagram method:
 
     - Block diagram of General registers Organization is in notebook
-    - Block diagrams visually represent the arrangement of registers within the CPU and their connections.
     - A bus organization for seven CPU registers is shown in Figure.
+    - Block diagrams visually represent the arrangement of registers within the CPU and their connections.
     - The output of each register is connected to two multiplexers (MUX) to form the two buses A and B. 
     - The selection lines in each multiplexer select one register or the input data for the particular bus.
     - The A and B buses are inputs to a common Arithmetic Logic Unit (ALU).
@@ -28,9 +28,8 @@
     - The register which receives the information from the output bus is selected by a decoder.
     - The decoder activates one of the register load inputs.
 
-    - The control unit(CU) manages the CPU bus system.
-    - The control unit directs the flow of information through the registers and ALU.
     - ALU built with high-speed circuits to ensure rapid processing and Minimizes delays in data manipulation.
+    - The control unit(CU) manages the CPU bus system.
     - The control unit selects various components in the system to execute instructions.
     
     - For example, to perform the operation 
@@ -41,9 +40,6 @@
             3. ALU operation selector (OPR): to provide the arithmetic addition A+B. 
             4. Decoder destination selector (SELD): to transfer the content of the output bus into R1.
 
-    - The control unit (CU) generates four control selection variables 
-    - These variables are required at the beginning of each clock cycle.
-    
     => Explaining Using Control Word method:
         
     - The control word consists of 14-bit binary inputs.
@@ -53,6 +49,8 @@
     - SELB selects the source register for the ALU's B input.
     - SELD selects the destination register using the decoder's load outputs.
     - OPR selects an operation in the ALU.
+
+    - Table above specifies the encoding of register selections.
 
     - Binary  SELA  SELB  SELD
        Code
@@ -66,15 +64,12 @@
         110    R6    R6    R6
         111    R7    R7    R7
 
-    - Table above specifies the encoding of register selections.
+    - Table above specifies the encoding of ALU operations for the CPU, with each operation designated by a symbolic name.
     - When SELA or SELB is 000, the multiplexer selects external input data(je 7 register thi different 6).
     
     - in short table ne samjavu....
     - Each 3-bit binary code corresponds to a decimal number representing a register.
     - When SELD is 000, no destination register is selected, but the output bus contents are available externally.
-    - The ALU provides arithmetic, logic, and shift operations.
-    - Shift operations can be placed before or after the ALU or included within it.
-    - Table above specifies the encoding of ALU operations for the CPU, with each operation designated by a symbolic name.
 
 
 (2.) Define stack? Explain 64bit word stack using PUSH and POP Operations.
@@ -83,7 +78,6 @@
     - Here the last element added to the stack is the first one to be removed
     - elements are added or removed from the top of the stack.
     - A stack in a CPU stores information in a last-in, first-out (LIFO) manner.
-    - It operates like a stack of trays, where the last tray placed on top is the first tray to be removed.
     - The stack has a stack pointer register (SP) that points to the top item in the stack.
     - The SP value indicates the memory address of the top item.
     - Stack Operations:
@@ -93,25 +87,15 @@
     =>Register Stack 
 
     - A stack can be a piece of large memory or a group of memory words or registers.
-    - Organization of a 64-word register stack:
-        - The stack is organized with 64 words.
-        - There's a special register called the stack pointer register (SP), which holds a binary number.
-        - This binary number equals the address of the word currently at the top of the stack. 
-    - Adding items to the stack:
-        - Initially, items A, B, and C are placed in the stack in that order.
-        - So, C becomes the top item, and the content of SP becomes 3.   
-    - Removing items from the stack:
-        - To remove the top item, the stack is "popped" by reading the memory word at address 3 and decreasing the content of SP.
-        - Now, item B is at the top since SP holds address 2.
-    - Inserting new items into the stack:
-        - To add a new item, the stack is "pushed" by increasing SP and writing a word in the next available space in the stack.
-        - Even though item C was read out, it's not physically removed. This is okay because when a new item is pushed, it's written in place of the previous top item.
+    - 64-word register stack is organized with 64 words.
 
-    - In a 64-word stack, the stack pointer has 6 bits because 2^6 = 64.
+    - Initially, items A, B, and C are placed in the stack in that order.
+    - So, C becomes the top item, and the content of SP becomes 3.   
+    
+    - In a 64-word stack, the stack pointer(SP) has 6 bits because 2^6 = 64.
     - The stack pointer can't go beyond 63 because it only has 6 bits.
     
-    - To handle Overflow and Underflow: 
-        - There are two one-bit registers
+    - To handle Overflow and Underflow There are two one-bit registers:
         - FULL indicates if the stack is full, 
         - EMPTY shows if it's empty.
 
@@ -157,39 +141,28 @@
 
     - Addressing modes in computer architecture define how operands are identified in machine instructions.
     - They specify the method by which the CPU fetches data from memory or registers to execute operations.
+
     - Addressing modes serve two main purposes:
         - Addressing modes offer programming flexibility by providing tools such as memory pointers, loop counters, etc...
         - They help reduce the number of bits needed in the instruction's address field.
     
-    - To grasp the different addressing modes discussed in this section, it's crucial to understand the basic operation cycle of a computer. 
+    - Instructions can have various addressing modes, and sometimes multiple addressing modes are combined in a single instruction.
+
     - The control unit of a computer follows an instruction cycle divided into three main phases:
         Fetch: The instruction is fetched from memory.
         Decode: The instruction is decoded to understand what operation needs to be performed.
         Execute: The instruction is executed, carrying out the specified operation.
+
     - The PC is a register in the computer that keeps track of instructions in the program stored in memory.
     - It holds the address of the next instruction to be executed.
     - The PC is incremented each time an instruction is fetched from memory.
-    -During this phase, the computer determines:
-        - The operation to be performed,
-        - The addressing mode of the instruction,
-        - The location of the operands.
-    - The computer executes the instruction based on the decoded information.
-    - After executing the instruction, the computer returns to step 1 to fetch the next instruction in sequence.
-
-    - Addressing Mode Specification:
-        - In some computers the addressing mode of the instruction is specified with a distinct binary code.
-        - Other computers use a single binary code for both the operation and the mode of the instruction.
-    - Variety of Addressing Modes:
-        - Instructions can have various addressing modes, and sometimes multiple addressing modes are combined in a single instruction.
-    - Special Addressing Modes:
-        - Two addressing modes, implied and immediate, don't require an address field in the instruction.
-
+    
     - Here's a note on different addressing modes:
 
         1. Immediate Addressing:
-            • In immediate addressing, the operand is a constant value or immediate data 
-            embedded within the instruction itself.
-            • Example: MOV R1, #10 - Moves the immediate value 10 into register R1.
+            • In immediate addressing, the operand is specified directly within the instruction itself,
+            • Example: MOV R1, #10 
+                                    (- Moves the immediate value 10 into register R1.)
 
         2. Register Addressing:
             • In register addressing, the operand is located in a CPU register.
@@ -201,28 +174,27 @@
             register R1.
 
         4. Indirect Addressing:
-            • In indirect addressing, the operand is a memory address that points to the location 
-            of the actual data.
+            • In indirect addressing, the operand is a memory address reference that points to the location 
+            where actual data is stored.
             • Example: LOAD R1, (R2) - Loads the data stored at the memory address stored in 
             register R2 into register R1.
 
         5. Indexed Addressing:
-            • In indexed addressing, the operand is calculated by adding an offset to a base 
-            address.
+            • In indexed addressing, the effective address of an operand is calculated by adding 
+            a base address to index value specified in the instruction.
             • Example: LOAD R1, (R2 + 4) - Loads the data stored at the memory address 
             obtained by adding 4 to the contents of register R2 into register R1.
 
         6. Relative Addressing:
-            • In relative addressing, the operand is specified relative to the current instruction's 
-            address.
-            • Example: JMP label - Jumps to the instruction labeled "label" located a certain 
-            number of bytes away from the current instruction.
+            • In relative addressing,  the operand's effective address is calculated relative to
+            the current instruction's address or the program counter (PC).
+            • Example: JMP MyLabel - Jumps to the instruction labeled as "MyLabel" 
 
         7. Base or Register Indirect with Displacement Addressing:
             • Combines elements of register and indirect addressing with an additional 
             displacement value.
             • Example: LOAD R1, 100(R2) - Loads the data stored at the memory address 
-            obtained by adding 100 to the contents of register R2 into register R1.
+            obtained by adding 100 to the contents of register R2  The resulting memory address is used to access the memory & store into register R1.
             
         8. Stack Addressing:
             • In stack addressing, the operand is implicitly or explicitly accessed from the top of 
@@ -251,3 +223,9 @@
         6. Single-cycle instruction execution
         
         7. Hardwired rather than microprogrammed control
+
+        8. fewer data type.
+
+        9. Pipeline can be acheived.
+
+        10. More general purpose registers.
